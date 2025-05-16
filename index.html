@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Redirección Automática</title>
+    <script>
+        let destino;
+        window.onload = function () {
+            let params = new URLSearchParams (window.location.search);
+            destino = params.get ('redir');
+            const hash = window.location.hash.substring (1);
+            params.delete ('redir');
+            params = params.toString ();
+            if (destino) window.location.href = destino + (params ? '?' + params : '') + (hash ? '#' + hash : '');
+        };
+    </script>
+</head>
+<body>
+    <p></p>
+    <script>if (!destino) document.getElementsByTagName ('p')[0].textContent = 'No hay URL para la redirección.';</script>
+</body>
+</html>

@@ -11,12 +11,19 @@
             const hash = window.location.hash.substring (1);
             params.delete ('redir');
             params = params.toString ();
-            if (destino) window.location.href = destino + (params ? '?' + params : '') + (hash ? '#' + hash : '');
+            if (destino) {
+                destino += (params ? '?' + params : '') + (hash ? '#' + hash : '');
+                window.location.href = destino;
+            }
         };
     </script>
 </head>
 <body>
     <p></p>
-    <script>if (!destino) document.getElementsByTagName ('p')[0].textContent = 'No hay URL para la redirección.';</script>
+    <script>
+        const p = document.getElementsByTagName ('p')[0];
+        if (destino) p.innerHTML = `<a href="${destino}">Haz click aquí si no se redirige automáticamente.</a>`;
+        else p.textContent = 'No hay URL para la redirección.';
+    </script>
 </body>
 </html>

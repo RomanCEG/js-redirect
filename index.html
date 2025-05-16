@@ -37,9 +37,7 @@
     <div></div>
     <script>
         setTimeout (() => {
-            const d = document.getElementsByTagName ('div')[0];
-            if (destino) d.innerHTML = `<a href="${destino}">Click para redirigir</a>`;
-            else d.textContent = 'No hay URL para redirigir';
+            document.getElementsByTagName ('div')[0].innerHTML = destino ? `<a href="${destino}">Click para redirigir</a>` : 'No hay URL para redirigir';
         }, 0);
     </script>
 </body>

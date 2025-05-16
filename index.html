@@ -2,28 +2,45 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Redirección Automática</title>
+    <title>Redirección-JS</title>
     <script>
         let destino;
         window.onload = function () {
             let params = new URLSearchParams (window.location.search);
             destino = params.get ('redir');
-            const hash = window.location.hash.substring (1);
             params.delete ('redir');
             params = params.toString ();
+            const hash = window.location.hash.substring (1);
             if (destino) {
                 destino += (params ? '?' + params : '') + (hash ? '#' + hash : '');
                 window.location.href = destino;
             }
         };
     </script>
+    <style>
+        body { margin: 0; padding: 0; }
+        div {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 90vh;
+            vertical-align: middle;
+            text-align: center;
+            background-color: white;
+            display: table-cell;
+            font: normal bold 3vw/1.5 Arial, sans-serif;
+
+        }
+    </style>
 </head>
 <body>
-    <p></p>
+    <div></div>
     <script>
-        const p = document.getElementsByTagName ('p')[0];
-        if (destino) p.innerHTML = `<a href="${destino}">Haz click aquí si no se redirige automáticamente.</a>`;
-        else p.textContent = 'No hay URL para la redirección.';
+        setTimeout (() => {
+            const d = document.getElementsByTagName ('div')[0];
+            if (destino) d.innerHTML = `<a href="${destino}">Click para redirigir</a>`;
+            else d.textContent = 'No hay URL para redirigir';
+        }, 0);
     </script>
 </body>
 </html>
